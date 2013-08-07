@@ -84,6 +84,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Torch
 
+PRODUCT_PACKAGES += \
+    e2fsck
+
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
