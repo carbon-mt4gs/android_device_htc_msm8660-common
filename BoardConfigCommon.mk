@@ -36,7 +36,7 @@ TARGET_CPU_VARIANT := cortex-a9
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
 #temp - gcc 4.7 causes bootloop for us. use cm10.1 4.6 for now
-TARGET_GCC_VERSION_EXP := 6
+TARGET_GCC_VERSION_EXP := 4.6
 
 # Flags
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
