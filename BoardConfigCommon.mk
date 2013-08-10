@@ -32,7 +32,7 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_SMP := true
-TARGET_CPU_VARIANT := cortex-a9
+TARGET_CPU_VARIANT := scorpion
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
 #temp - gcc 4.7 causes bootloop for us. use cm10.1 4.6 for now
