@@ -130,6 +130,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dev.pm.dyn_samplingrate=1 \
     ro.opengles.version=131072
 
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    persist.sys.root_access=3 \
+    ro.adb.secure=0
+
 # BT
 PRODUCT_COPY_FILES += \
     device/htc/msm8660-common/bluetooth/bt_vendor.conf:/system/etc/bluetooth/bt_vendor.conf
