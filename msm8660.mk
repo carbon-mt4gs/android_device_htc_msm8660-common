@@ -75,6 +75,11 @@ PRODUCT_PACKAGES += \
     libOmxEvrcEnc \
     libOmxAmrEnc
 
+PRODUCT_PACKAGES += \
+    camera.default \
+    libnetcmdiface \
+    libsurfaceflinger_client
+
 # HDMI
 PRODUCT_PACKAGES += \
     hdmid
@@ -137,7 +142,3 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 # BT
 PRODUCT_COPY_FILES += \
     device/htc/msm8660-common/bluetooth/bt_vendor.conf:/system/etc/bluetooth/bt_vendor.conf
-
-# Camera wrapper
-PRODUCT_PACKAGES += \
-    camera.msm8660
