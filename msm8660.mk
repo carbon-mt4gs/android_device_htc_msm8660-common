@@ -75,10 +75,6 @@ PRODUCT_PACKAGES += \
     libOmxEvrcEnc \
     libOmxAmrEnc
 
-# Camera wrapper
-PRODUCT_PACKAGES += \
-    camera.default
-
 # HDMI
 PRODUCT_PACKAGES += \
     hdmid
