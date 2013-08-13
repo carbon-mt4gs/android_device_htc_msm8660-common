@@ -1,0 +1,15 @@
+# Device-specific proprietary files sharing a common name
+bin/charging
+bin/htcbatt
+bin/netmgrd
+lib/libacdbmapper.so
+lib/libaudcal.so
+lib/libgemini.so
+lib/libhtc_ril.so
+lib/libmllite.so
+lib/libmmipl.so
+lib/libmmjpeg.so
+lib/liboemcamera.so
+lib/libOlaEngine.so
+lib/libposteffect.so
+lib/libqdp.so
