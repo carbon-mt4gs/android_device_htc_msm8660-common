@@ -126,3 +126,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072 \
     ro.bq.gpu_to_cpu_unsupported=1
 
+# call the proprietary setup
+$(call inherit-product-if-exists, vendor/htc/msm8660-common/msm8660-common-vendor.mk)
