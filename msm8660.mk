@@ -80,10 +80,6 @@ PRODUCT_PACKAGES += \
     libnetcmdiface \
     libsurfaceflinger_client
 
-# HDMI
-PRODUCT_PACKAGES += \
-    hdmid
-
 # Torch
 PRODUCT_PACKAGES += \
     Torch
