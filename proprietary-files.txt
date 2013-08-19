@@ -2,7 +2,7 @@
 bin/charging
 bin/htcbatt
 bin/netmgrd
-lib/hw/vendor-camera.default.so
+lib/hw/vendor-camera.msm8660.so
 lib/libacdbmapper.so
 lib/libaudcal.so
 lib/libgemini.so
