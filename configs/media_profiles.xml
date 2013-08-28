@@ -166,7 +166,7 @@
       <Audio codec="aac"
              bitRate="156000"
              sampleRate="48000"
-             channels="2" />
+             channels="1" />
     </EncoderProfile>
 
     <EncoderProfile quality="qvga" fileFormat="mp4" duration="30">
