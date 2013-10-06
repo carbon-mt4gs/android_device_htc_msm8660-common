@@ -78,10 +78,14 @@ PRODUCT_PACKAGES += \
     libOmxEvrcEnc \
     libOmxAmrEnc
 
+# Camera
 PRODUCT_PACKAGES += \
     camera.msm8660 \
-    libnetcmdiface \
     libsurfaceflinger_client
+
+# Power
+PRODUCT_PACKAGES += \
+    power.msm8660
 
 # Torch
 PRODUCT_PACKAGES += \
@@ -90,6 +94,10 @@ PRODUCT_PACKAGES += \
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
+
+# Misc
+PRODUCT_PACKAGES += \
+    libnetcmdiface
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
