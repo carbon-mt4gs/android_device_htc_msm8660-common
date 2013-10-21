@@ -16,38 +16,38 @@
 
 # Prebuilt libraries that are needed to build open-source libraries
 PRODUCT_COPY_FILES += \
-    vendor/htc/msm8660-common/proprietary/lib/libaudioalsa.so:obj/lib/libaudioalsa.so \
-    vendor/htc/msm8660-common/proprietary/lib/libacdbloader.so:obj/lib/libacdbloader.so
+    device/htc/msm8660-common/vendor/proprietary/lib/libaudioalsa.so:obj/lib/libaudioalsa.so \
+    device/htc/msm8660-common/vendor/proprietary/lib/libacdbloader.so:obj/lib/libacdbloader.so
 
 PRODUCT_COPY_FILES += \
-        vendor/htc/msm8660-common/proprietary/bin/qmuxd:/system/bin/qmuxd \
-        vendor/htc/msm8660-common/proprietary/bin/rmt_storage:/system/bin/rmt_storage \
-        vendor/htc/msm8660-common/proprietary/lib/egl/eglsubAndroid.so:/system/lib/egl/eglsubAndroid.so \
-        vendor/htc/msm8660-common/proprietary/lib/egl/libEGL_adreno200.so:/system/lib/egl/libEGL_adreno200.so \
-        vendor/htc/msm8660-common/proprietary/lib/egl/libGLESv1_CM_adreno200.so:/system/lib/egl/libGLESv1_CM_adreno200.so \
-        vendor/htc/msm8660-common/proprietary/lib/egl/libGLESv2_adreno200.so:/system/lib/egl/libGLESv2_adreno200.so \
-        vendor/htc/msm8660-common/proprietary/lib/egl/libGLESv2S3D_adreno200.so:/system/lib/egl/libGLESv2S3D_adreno200.so \
-        vendor/htc/msm8660-common/proprietary/lib/egl/libq3dtools_adreno200.so:/system/lib/egl/libq3dtools_adreno200.so \
-        vendor/htc/msm8660-common/proprietary/lib/libacdbloader.so:/system/lib/libacdbloader.so \
-        vendor/htc/msm8660-common/proprietary/lib/libaudioalsa.so:/system/lib/libaudioalsa.so \
-        vendor/htc/msm8660-common/proprietary/lib/libC2D2.so:/system/lib/libC2D2.so \
-        vendor/htc/msm8660-common/proprietary/lib/libc2d2_z180.so:/system/lib/libc2d2_z180.so \
-        vendor/htc/msm8660-common/proprietary/lib/libcameraface.so:/system/lib/libcameraface.so \
-        vendor/htc/msm8660-common/proprietary/lib/libcamerapp.so:/system/lib/libcamerapp.so \
-        vendor/htc/msm8660-common/proprietary/lib/libcameraSP.so:/system/lib/libcameraSP.so \
-        vendor/htc/msm8660-common/proprietary/lib/libdiag.so:/system/lib/libdiag.so \
-        vendor/htc/msm8660-common/proprietary/lib/libdll.so:/system/lib/libdll.so \
-        vendor/htc/msm8660-common/proprietary/lib/libdsi_netctrl.so:/system/lib/libdsi_netctrl.so \
-        vendor/htc/msm8660-common/proprietary/lib/libdsutils.so:/system/lib/libdsutils.so \
-        vendor/htc/msm8660-common/proprietary/lib/libgsl.so:/system/lib/libgsl.so \
-        vendor/htc/msm8660-common/proprietary/lib/libhtc_acoustic.so:/system/lib/libhtc_acoustic.so \
-        vendor/htc/msm8660-common/proprietary/lib/libidl.so:/system/lib/libidl.so \
-        vendor/htc/msm8660-common/proprietary/lib/libmlplatform.so:/system/lib/libmlplatform.so \
-        vendor/htc/msm8660-common/proprietary/lib/libmm-color-convertor.so:/system/lib/libmm-color-convertor.so \
-        vendor/htc/msm8660-common/proprietary/lib/libmpl.so:/system/lib/libmpl.so \
-        vendor/htc/msm8660-common/proprietary/lib/libnetmgr.so:/system/lib/libnetmgr.so \
-        vendor/htc/msm8660-common/proprietary/lib/libOpenVG.so:/system/lib/libOpenVG.so \
-        vendor/htc/msm8660-common/proprietary/lib/libqmi.so:/system/lib/libqmi.so \
-        vendor/htc/msm8660-common/proprietary/lib/libqmiservices.so:/system/lib/libqmiservices.so \
-        vendor/htc/msm8660-common/proprietary/lib/libsc-a2xx.so:/system/lib/libsc-a2xx.so \
-        vendor/htc/msm8660-common/proprietary/lib/libWVphoneAPI.so:/system/lib/libWVphoneAPI.so
+        device/htc/msm8660-common/vendor/proprietary/bin/qmuxd:/system/bin/qmuxd \
+        device/htc/msm8660-common/vendor/proprietary/bin/rmt_storage:/system/bin/rmt_storage \
+        device/htc/msm8660-common/vendor/proprietary/lib/egl/eglsubAndroid.so:/system/lib/egl/eglsubAndroid.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/egl/libEGL_adreno200.so:/system/lib/egl/libEGL_adreno200.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/egl/libGLESv1_CM_adreno200.so:/system/lib/egl/libGLESv1_CM_adreno200.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/egl/libGLESv2_adreno200.so:/system/lib/egl/libGLESv2_adreno200.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/egl/libGLESv2S3D_adreno200.so:/system/lib/egl/libGLESv2S3D_adreno200.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/egl/libq3dtools_adreno200.so:/system/lib/egl/libq3dtools_adreno200.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libacdbloader.so:/system/lib/libacdbloader.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libaudioalsa.so:/system/lib/libaudioalsa.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libC2D2.so:/system/lib/libC2D2.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libc2d2_z180.so:/system/lib/libc2d2_z180.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libcameraface.so:/system/lib/libcameraface.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libcamerapp.so:/system/lib/libcamerapp.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libcameraSP.so:/system/lib/libcameraSP.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libdiag.so:/system/lib/libdiag.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libdll.so:/system/lib/libdll.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libdsi_netctrl.so:/system/lib/libdsi_netctrl.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libdsutils.so:/system/lib/libdsutils.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libgsl.so:/system/lib/libgsl.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libhtc_acoustic.so:/system/lib/libhtc_acoustic.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libidl.so:/system/lib/libidl.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libmlplatform.so:/system/lib/libmlplatform.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libmm-color-convertor.so:/system/lib/libmm-color-convertor.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libmpl.so:/system/lib/libmpl.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libnetmgr.so:/system/lib/libnetmgr.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libOpenVG.so:/system/lib/libOpenVG.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libqmi.so:/system/lib/libqmi.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libqmiservices.so:/system/lib/libqmiservices.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libsc-a2xx.so:/system/lib/libsc-a2xx.so \
+        device/htc/msm8660-common/vendor/proprietary/lib/libWVphoneAPI.so:/system/lib/libWVphoneAPI.so

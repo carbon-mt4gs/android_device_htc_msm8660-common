@@ -16,4 +16,4 @@
 
 # Pick up overlay for features that depend on non-open-source files
 
-$(call inherit-product, vendor/htc/msm8660-common/msm8660-common-vendor-blobs.mk)
+$(call inherit-product, device/htc/msm8660-common/vendor/msm8660-common-vendor-blobs.mk)
