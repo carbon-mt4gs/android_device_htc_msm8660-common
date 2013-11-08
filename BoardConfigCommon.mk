@@ -90,5 +90,10 @@ TARGET_PROVIDES_LIBLIGHTS := true
 ENABLE_WEBGL := true
 TARGET_FORCE_CPU_UPLOAD := true
 
+USE_SET_METADATA := false
+
 # Hardware tunables
 BOARD_HARDWARE_CLASS := device/htc/msm8660-common/cmhw
+
+# Recovery
+USE_SET_METADATA := false
