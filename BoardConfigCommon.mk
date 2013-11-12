@@ -32,7 +32,7 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_SMP := true
-TARGET_CPU_VARIANT := scorpion
+TARGET_CPU_VARIANT := generic
 
 # Flags
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
@@ -90,5 +90,10 @@ TARGET_PROVIDES_LIBLIGHTS := true
 ENABLE_WEBGL := true
 TARGET_FORCE_CPU_UPLOAD := true
 
+USE_SET_METADATA := false
+
 # Hardware tunables
 BOARD_HARDWARE_CLASS := device/htc/msm8660-common/cmhw
+
+# Recovery
+USE_SET_METADATA := false
