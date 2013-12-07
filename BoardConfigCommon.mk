@@ -63,6 +63,7 @@ COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB -DNO_UPDATE_PREVIEW
 BOARD_HAVE_HTC_FFC := true
 TARGET_DISABLE_ARM_PIE := true
 BOARD_NEEDS_MEMORYHEAPPMEM := true
+USE_DEVICE_SPECIFIC_CAMERA := true
 
 # Camera wrapper
 COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
@@ -94,12 +95,38 @@ TARGET_PROVIDES_LIBLIGHTS := true
 # Sensors
 COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 
-# Webkit
-ENABLE_WEBGL := true
-TARGET_FORCE_CPU_UPLOAD := true
-
 # Hardware tunables
 BOARD_HARDWARE_CLASS := device/htc/msm8660-common/cmhw
 
 # Recovery
 USE_SET_METADATA := false
+
+# SELinux
+BOARD_SEPOLICY_DIRS += \
+    device/htc/msm8660-common/sepolicy
+
+BOARD_SEPOLICY_UNION += \
+    app.te \
+    bluetooth.te \
+    device.te \
+    domain.te \
+    drmserver.te \
+    file_contexts \
+    files \
+    file.te \
+    hci_init.te \
+    healthd.te \
+    init.te \
+    init_shell.te \
+    keystore.te \
+    kickstart.te \
+    mediaserver.te \
+    rild.te \
+    surfaceflinger.te \
+    system.te \
+    ueventd.te \
+    untrusted_app.te \
+    vold.te \
+    wpa.te \
+    wpa_socket.te
+
