@@ -95,13 +95,8 @@ TARGET_PROVIDES_LIBLIGHTS := true
 # Sensors
 COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 
-USE_SET_METADATA := false
-
 # Hardware tunables
 BOARD_HARDWARE_CLASS := device/htc/msm8660-common/cmhw
-
-# Recovery
-USE_SET_METADATA := false
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \
