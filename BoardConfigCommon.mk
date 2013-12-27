@@ -93,6 +93,9 @@ TARGET_USES_POST_PROCESSING := true
 TARGET_USES_C2D_COMPOSITION := true
 BOARD_EGL_CFG := device/htc/msm8660-common/configs/egl.cfg
 
+# OpenGL
+BOARD_EGL_WORKAROUND_BUG_10194508 := true
+
 # Lights
 # legacy LIBLIGHT naming
 TARGET_PROVIDES_LIBLIGHT := true
