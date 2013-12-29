@@ -92,6 +92,7 @@ TARGET_ENABLE_AV_ENHANCEMENTS := true
 TARGET_USES_POST_PROCESSING := true
 TARGET_USES_C2D_COMPOSITION := true
 BOARD_EGL_CFG := device/htc/msm8660-common/configs/egl.cfg
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
 # Lights
 # legacy LIBLIGHT naming
