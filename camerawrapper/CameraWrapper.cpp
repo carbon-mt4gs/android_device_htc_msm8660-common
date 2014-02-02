@@ -92,6 +92,8 @@ static int check_vendor_module()
     return rv;
 }
 
+const static char * previewSizesStr[] = {"1920x1088,1280x720,960x544,800x480,720x480,640x480,640x368,480x320,320x240"};
+
 static char *camera_fixup_getparams(int id, const char *settings)
 {
     android::CameraParameters params;
@@ -101,6 +103,14 @@ static char *camera_fixup_getparams(int id, const char *settings)
     ALOGV("%s: original parameters:", __FUNCTION__);
     params.dump();
 #endif
+
+    /*set acceptable resolution for doubleshot rear camera ID: 0
+    Leaving all other options as is
+    */
+    if (id==0)
+    {
+        params.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES, previewSizesStr[id]);
+    }
 
     /* Face detection */
     params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_HW, "0");
