@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2012, The CyanogenMod Project
+ * Copyright (C) 2014, The CyanogenMod Project
+ * Copyright (C) 2014, Emmanuel Utomi
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +22,7 @@
 *
 */
 
-//#define LOG_NDEBUG 0
+#define LOG_NDEBUG 0
 
 #define LOG_TAG "CameraWrapper"
 #include <cutils/log.h>
@@ -53,8 +54,8 @@ camera_module_t HAL_MODULE_INFO_SYM = {
          version_major: 1,
          version_minor: 0,
          id: CAMERA_HARDWARE_MODULE_ID,
-         name: "MSM8660 Camera Wrapper",
-         author: "The CyanogenMod Project",
+         name: "HTC Doubleshot Camera Wrapper",
+         author: "IPZ <illespal@gmail.com> & Emmanuel Utomi <emmanuelutomi@gmail.com>",
          methods: &camera_module_methods,
          dso: NULL, /* remove compilation warnings */
          reserved: {0}, /* remove compilation warnings */
@@ -92,26 +93,18 @@ static int check_vendor_module()
     return rv;
 }
 
-const static char * previewSizesStr[] = {"1920x1088,1280x720,960x544,800x480,720x480,640x480,640x368,480x320,320x240"};
+const static char * previewSizesStr[] = {"1920x1088,1280x720,960x544,800x480,720x480,640x480,640x368,480x320,320x240", "640x480"};
 
-static char *camera_fixup_getparams(int id, const char *settings)
-{
-    android::CameraParameters params;
-    params.unflatten(android::String8(settings));
+char *FixupDSParams(int id, android::CameraParameters params){
 
 #if !LOG_NDEBUG
-    ALOGV("%s: original parameters:", __FUNCTION__);
+    ALOGV("%s: original parameters for Camera ID %d:", __FUNCTION__, id);
     params.dump();
 #endif
 
-    /*set acceptable resolution for doubleshot rear camera ID: 0
-    Leaving all other options as is
-    */
-    if (id==0)
-    {
-        params.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES, previewSizesStr[id]);
-    }
+params.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES, previewSizesStr[id]);
 
+if(id==0){
     /* Face detection */
     params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_HW, "0");
     params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_SW, "0");
@@ -128,6 +121,24 @@ static char *camera_fixup_getparams(int id, const char *settings)
     params.set(android::CameraParameters::KEY_TOUCH_AF_AEC, "touch-on");
     params.set(android::CameraParameters::KEY_HORIZONTAL_VIEW_ANGLE, "54.4");
     params.set(android::CameraParameters::KEY_VERTICAL_VIEW_ANGLE, "42.2");
+}
+else if(id == 1) params.set(android::CameraParameters::KEY_PREVIEW_SIZE, "640x480");
+
+
+#if !LOG_NDEBUG
+    ALOGV("%s: fixed parameters for Camera ID %d:", __FUNCTION__, id);
+    params.dump();
+#endif
+
+    android::String8 strParams = params.flatten();
+    char *ret = strdup(strParams.string());
+    return ret;
+}
+
+static char *camera_fixup_getparams(int id, const char *settings)
+{
+    android::CameraParameters params;
+    params.unflatten(android::String8(settings));
 
     // Some QCOM related framework changes expect max-saturation, max-contrast
     // and max-sharpness or the Camera app will crash.
@@ -142,15 +153,8 @@ static char *camera_fixup_getparams(int id, const char *settings)
         params.set("max-sharpness", value);
     }
 
-#if !LOG_NDEBUG
-    ALOGV("%s: fixed parameters:", __FUNCTION__);
-    params.dump();
-#endif
-
-    android::String8 strParams = params.flatten();
-    char *ret = strdup(strParams.string());
-
-    return ret;
+    return FixupDSParams(id, params);
+    
 }
 
 static char *camera_fixup_setparams(int id, const char *settings)
@@ -159,27 +163,12 @@ static char *camera_fixup_setparams(int id, const char *settings)
     android::CameraParameters params;
     params.unflatten(android::String8(settings));
 
-#if !LOG_NDEBUG
-    ALOGV("%s: original parameters:", __FUNCTION__);
-    params.dump();
-#endif
+    params.set(android::CameraParameters::KEY_AUTO_EXPOSURE_LOCK, "false");
 
     /* Face detection */
     params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_HW, "0");
     params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_SW, "0");
 
-    params.set(android::CameraParameters::KEY_PREVIEW_FRAME_RATE, "30");
-    params.set(android::CameraParameters::KEY_AUTO_EXPOSURE_LOCK, "false");
-    params.set(android::CameraParameters::KEY_ANTIBANDING, "auto");
-    params.set(android::CameraParameters::KEY_AUTO_EXPOSURE, "frame-average");
-    params.set(android::CameraParameters::KEY_SCENE_DETECT, "on");
-    params.set(android::CameraParameters::KEY_SKIN_TONE_ENHANCEMENT, "enable");
-    params.set(android::CameraParameters::KEY_FOCAL_LENGTH, "3.49");
-    params.set(android::CameraParameters::KEY_FOCUS_DISTANCES, "1.000000,32.000000,32.000000");
-    params.set(android::CameraParameters::KEY_SCENE_DETECT, "on");
-    params.set(android::CameraParameters::KEY_TOUCH_AF_AEC, "touch-on");
-    params.set(android::CameraParameters::KEY_HORIZONTAL_VIEW_ANGLE, "54.4");
-    params.set(android::CameraParameters::KEY_VERTICAL_VIEW_ANGLE, "42.2");
 
     // Enable video mode for our HTC camera
     //   old overlay: needsHtcCamMode
@@ -190,10 +179,7 @@ static char *camera_fixup_setparams(int id, const char *settings)
 
     params.set("cam-mode", isVideo ? "1" : "0");
 
-#if !LOG_NDEBUG
-    ALOGV("%s: fixed parameters:", __FUNCTION__);
-    params.dump();
-#endif
+    FixupDSParams(id, params);
 
     android::String8 strParams = params.flatten();
     if (fixed_set_params[id])
