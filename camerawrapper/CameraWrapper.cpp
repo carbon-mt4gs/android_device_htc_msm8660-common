@@ -21,7 +21,7 @@
 *
 */
 
-//#define LOG_NDEBUG 0
+#define LOG_NDEBUG 1
 
 #define LOG_TAG "CameraWrapper"
 #include <cutils/log.h>
@@ -92,6 +92,8 @@ static int check_vendor_module()
     return rv;
 }
 
+const static char * previewSizesStr[] = {"1920x1088,1280x720,960x544,800x480,720x480,640x480,640x368,480x320,320x240"};
+
 static char *camera_fixup_getparams(int id, const char *settings)
 {
     android::CameraParameters params;
@@ -102,15 +104,23 @@ static char *camera_fixup_getparams(int id, const char *settings)
     params.dump();
 #endif
 
-    /* Face detection */
+
+    if (id == 0){
+	    params.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES, previewSizesStr[id]);
+	    params.set(android::CameraParameters::KEY_PREVIEW_FRAME_RATE, "30");
+	    params.set(android::CameraParameters::KEY_SUPPORTED_FOCUS_MODES, "auto,infinity,normal,macro,continuous-picture");
+
+    } else {
+	    params.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES, "640x480");
+	    params.set(android::CameraParameters::KEY_PREVIEW_FRAME_RATE, "31");
+    }
+
     params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_HW, "0");
     params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_SW, "0");
-
-    params.set(android::CameraParameters::KEY_PREVIEW_FRAME_RATE, "30");
     params.set(android::CameraParameters::KEY_AUTO_EXPOSURE_LOCK, "false");
     params.set(android::CameraParameters::KEY_ANTIBANDING, "auto");
     params.set(android::CameraParameters::KEY_AUTO_EXPOSURE, "frame-average");
-    params.set(android::CameraParameters::KEY_SCENE_DETECT, "on");
+    params.set(android::CameraParameters::KEY_VIDEO_SNAPSHOT_SUPPORTED, "false");
     params.set(android::CameraParameters::KEY_SKIN_TONE_ENHANCEMENT, "enable");
     params.set(android::CameraParameters::KEY_FOCAL_LENGTH, "3.49");
     params.set(android::CameraParameters::KEY_FOCUS_DISTANCES, "1.000000,32.000000,32.000000");
@@ -118,9 +128,17 @@ static char *camera_fixup_getparams(int id, const char *settings)
     params.set(android::CameraParameters::KEY_TOUCH_AF_AEC, "touch-on");
     params.set(android::CameraParameters::KEY_HORIZONTAL_VIEW_ANGLE, "54.4");
     params.set(android::CameraParameters::KEY_VERTICAL_VIEW_ANGLE, "42.2");
+    params.set(android::CameraParameters::KEY_AUTO_EXPOSURE_LOCK, "false");
 
-    // Some QCOM related framework changes expect max-saturation, max-contrast
-    // and max-sharpness or the Camera app will crash.
+    /* Set correct caf-focus-mode */ 
+    const char* focusAreas = params.get(android::CameraParameters::KEY_FOCUS_AREAS);
+
+    if(focusAreas && strcmp(focusAreas, "(0,0,0,0,0)")) 
+	params.set("caf-focus-mode", "touch");
+    else
+	params.set("caf-focus-mode", "default");
+
+
     const char* value;
     if((value = params.get("saturation-max"))) {
         params.set("max-saturation", value);
@@ -153,23 +171,6 @@ static char *camera_fixup_setparams(int id, const char *settings)
     ALOGV("%s: original parameters:", __FUNCTION__);
     params.dump();
 #endif
-
-    /* Face detection */
-    params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_HW, "0");
-    params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_SW, "0");
-
-    params.set(android::CameraParameters::KEY_PREVIEW_FRAME_RATE, "30");
-    params.set(android::CameraParameters::KEY_AUTO_EXPOSURE_LOCK, "false");
-    params.set(android::CameraParameters::KEY_ANTIBANDING, "auto");
-    params.set(android::CameraParameters::KEY_AUTO_EXPOSURE, "frame-average");
-    params.set(android::CameraParameters::KEY_SCENE_DETECT, "on");
-    params.set(android::CameraParameters::KEY_SKIN_TONE_ENHANCEMENT, "enable");
-    params.set(android::CameraParameters::KEY_FOCAL_LENGTH, "3.49");
-    params.set(android::CameraParameters::KEY_FOCUS_DISTANCES, "1.000000,32.000000,32.000000");
-    params.set(android::CameraParameters::KEY_SCENE_DETECT, "on");
-    params.set(android::CameraParameters::KEY_TOUCH_AF_AEC, "touch-on");
-    params.set(android::CameraParameters::KEY_HORIZONTAL_VIEW_ANGLE, "54.4");
-    params.set(android::CameraParameters::KEY_VERTICAL_VIEW_ANGLE, "42.2");
 
     // Enable video mode for our HTC camera
     //   old overlay: needsHtcCamMode
