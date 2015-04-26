@@ -108,7 +108,7 @@ static char *camera_fixup_getparams(int id, const char *settings)
     if (id == 0){
 	    params.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES, previewSizesStr[id]);
 	    params.set(android::CameraParameters::KEY_PREVIEW_FRAME_RATE, "30");
-	    params.set(android::CameraParameters::KEY_SUPPORTED_FOCUS_MODES, "auto,infinity,normal,macro,continuous-picture");
+//	    params.set(android::CameraParameters::KEY_SUPPORTED_FOCUS_MODES, "auto,infinity,normal,macro,continuous-picture");
 
     } else {
 	    params.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES, "640x480");
